@@ -25,8 +25,8 @@ exports.agregarTarea = async (req, res, next) => {
 }
 
 exports.cambiarEstadoTarea = async (req, res) => {
-    const { id } = req.params;
-    const tarea = await Tareas.findOne({where: { id }});
+    const { id } = req.params; //captura id de la tarea
+    const tarea = await Tareas.findOne({where: { id }}); //busca la tarea por el id
 
     // cambiar el estado
     let estado = 0;
@@ -35,14 +35,14 @@ exports.cambiarEstadoTarea = async (req, res) => {
     }
     tarea.estado = estado;
 
-    const resultado = await tarea.save();
+    const resultado = await tarea.save(); //guarda en la bd con la nueva info
 
     if(!resultado) return next();
     
     res.status(200).send('Actualizado');
 }
 
-exports.eliminarTarea = async (req, res) => {
+exports.eliminarTarea = async (req, res, next) => {
 
     const { id } = req.params;
 

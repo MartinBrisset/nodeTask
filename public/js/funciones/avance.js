@@ -13,7 +13,7 @@ export const actualizarAvance = () => {
 
         // mostrar el avance
         const porcentaje = document.querySelector('#porcentaje');
-        porcentaje.style.width = avance+'%';
+        porcentaje.style.width = avance+'%'; //agrega el estilo
 
         if(avance === 100) {
             Swal.fire(

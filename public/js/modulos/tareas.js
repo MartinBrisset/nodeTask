@@ -8,9 +8,9 @@ const tareas = document.querySelector('.listado-pendientes');
 if(tareas) {
 
     tareas.addEventListener('click', e => {
-        if(e.target.classList.contains('fa-check-circle')){
+        if(e.target.classList.contains('fa-check-circle')){ //ver si existe la clase
             const icono = e.target;
-            const idTarea = icono.parentElement.parentElement.dataset.tarea;
+            const idTarea = icono.parentElement.parentElement.dataset.tarea; //con parentElement vas hacia atras como si fuera ../
 
             // request hacia /tareas/:id
             const url = `${location.origin}/tareas/${idTarea}`;
@@ -18,7 +18,7 @@ if(tareas) {
             axios.patch(url, { idTarea })
                 .then(function(respuesta){
                     if(respuesta.status === 200){
-                        icono.classList.toggle('completo');
+                        icono.classList.toggle('completo'); //le cambia la clase
 
                         actualizarAvance();
                     }
@@ -49,7 +49,7 @@ if(tareas) {
                                 if(respuesta.status === 200) {
                                     // console.log(respuesta);
 
-                                    // Eliminar el Nodo
+                                    // Eliminar el Nodo - borrar el html para que no aparezca en el sitio en realtime
                                     tareaHTML.parentElement.removeChild(tareaHTML);
 
                                     // Opcional una alerta

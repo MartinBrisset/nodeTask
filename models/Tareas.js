@@ -11,6 +11,6 @@ const Tareas = db.define('tareas', {
     tarea: Sequelize.STRING(100),
     estado: Sequelize.INTEGER(1)
 });
-Tareas.belongsTo(Proyectos);
+Tareas.belongsTo(Proyectos); //relaciona las tablas
 
 module.exports = Tareas;

@@ -163,7 +163,7 @@ exports.eliminarProyecto = async (req, res, next) => {
     // console.log(req.query);
     const {urlProyecto} = req.query;
 
-    const resultado = await Proyectos.destroy({where: { url : urlProyecto}});
+    const resultado = await Proyectos.destroy({where: { url : urlProyecto}}); //consulta sql
 
     if(!resultado){
         return next();

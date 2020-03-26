@@ -8,6 +8,7 @@ if(btnEliminar){
         const urlProyecto = e.target.dataset.proyectoUrl;
 
         // console.log(urlProyecto);
+        // return;
         Swal.fire({
             title: 'Deseas borrar este proyecto?',
             text: "Un proyecto eliminado no se puede recuperar",

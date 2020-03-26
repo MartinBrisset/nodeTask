@@ -43,7 +43,7 @@ const Usuarios = db.define('usuarios', {
 }, {
     hooks: {
         beforeCreate(usuario) {
-            usuario.password = bcrypt.hashSync(usuario.password, bcrypt.genSaltSync(10) );
+            usuario.password = bcrypt.hashSync(usuario.password, bcrypt.genSaltSync(10) ); //encripta la clave antes de hacer el insert
         }
     }
 });
@@ -53,6 +53,6 @@ Usuarios.prototype.verificarPassword = function(password) {
     return bcrypt.compareSync(password, this.password);
 }
 
-Usuarios.hasMany(Proyectos);
+Usuarios.hasMany(Proyectos); //relaciona proyectos con el usuario
 
 module.exports = Usuarios;
