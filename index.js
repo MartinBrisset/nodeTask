@@ -46,8 +46,6 @@ app.use(morgan('dev')); //muestra la ruta en la consola
 // Añadir la carpeta de las vistas
 app.set('views', path.join(__dirname, './views'));
 
-
-
 app.use(cookieParser());
 
 // sessiones nos permiten navegar entre distintas paginas sin volvernos a autenticar
@@ -58,8 +56,8 @@ app.use(session({
 }));
 
 
-app.use(passport.initialize());
-app.use(passport.session());
+app.use(passport.initialize());//arrancar passport
+app.use(passport.session());//configuracion de passport
 
 // agregar flash messages
 app.use(flash());
@@ -68,7 +66,7 @@ app.use(flash());
 app.use((req, res, next) => {
     res.locals.vardump = helpers.vardump;
     res.locals.mensajes = req.flash();
-    res.locals.usuario = {...req.user} || null;
+    res.locals.usuario = {...req.user} || null; //captura los datos de la sesion
     next();
 });
 

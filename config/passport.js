@@ -22,7 +22,7 @@ passport.use(
                 });
        
                 // El usuario existe, password incorrecto
-                if(!usuario.verificarPassword(password)) {
+                if(!usuario.verificarPassword(password)) { //la funcion esta en el modelo
                     return done(null, false, {
                         message : 'Password Incorrecto'
                     })

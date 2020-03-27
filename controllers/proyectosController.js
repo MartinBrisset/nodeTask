@@ -5,7 +5,7 @@ exports.proyectosHome = async (req, res) => {
 
     // console.log(res.locals.usuario);
 
-    const usuarioId = res.locals.usuario.id;
+    const usuarioId = res.locals.usuario.id; //datos de la sesion
     const proyectos = await Proyectos.findAll({where: { usuarioId  }}); //pide a la bd los proyectos por el id del usuario que esta contectado
 
     res.render('index', {
@@ -51,7 +51,7 @@ exports.nuevoProyecto = async (req, res) => {
     } else {
         // No hay errores
         // Insertar en la BD.
-        const usuarioId = res.locals.usuario.id;
+        const usuarioId = res.locals.usuario.id; //datos de la sesion
         await Proyectos.create({ nombre, usuarioId });
         res.redirect('/');
     }

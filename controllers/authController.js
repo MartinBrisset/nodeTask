@@ -15,21 +15,21 @@ exports.autenticarUsuario = passport.authenticate('local', {
     badRequestMessage: 'Ambos Campos son Obligatorios'
 });
 
-// Función para revisar si el usuario esta logueado o no
+// Función para revisar si el usuario esta logueado o no - Middleware
 exports.usuarioAutenticado = (req, res, next) => {
 
     // si el usuario esta autenticado, adelante
     if(req.isAuthenticated()) {
         return next();
     }
-    // sino esta autenticado, redirigir al formulario
+    // si no esta autenticado, redirigir al formulario
     return res.redirect('/iniciar-sesion');
 }
 
 // función para cerrar sesión
 exports.cerrarSesion = (req, res) => {
     req.session.destroy(() => {
-        res.redirect('/iniciar-sesion'); // al cerrar sesión nos lleva al login
+        res.redirect('/iniciar-sesion'); // al cerrar sesión nos lleva al inicio de sesion
     })
 }
 

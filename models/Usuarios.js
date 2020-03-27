@@ -50,7 +50,7 @@ const Usuarios = db.define('usuarios', {
 
 // Métodos personalizados
 Usuarios.prototype.verificarPassword = function(password) {
-    return bcrypt.compareSync(password, this.password);
+    return bcrypt.compareSync(password, this.password); //compara la clave al iniciar sesion
 }
 
 Usuarios.hasMany(Proyectos); //relaciona proyectos con el usuario
