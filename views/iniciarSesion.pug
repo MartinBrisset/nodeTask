@@ -5,6 +5,8 @@ html(lang="en")
     body.login
         .contenedor-formulario
             h1 Iniciar Sesión en UpTask
+            p El sistema solamente muestra los proyectos propios de cada usuario utilizando sesiones
+
             
             if locals.mensajes
                 .alertas
@@ -16,7 +18,7 @@ html(lang="en")
             form#formulario.caja.caja-login(method="POST" action="/iniciar-sesion")
                 .campo
                     label(for="email") E-mail:
-                    input(type="text" name="email" placeholder="Tu Email" value="correo@correo.com")
+                    input(type="text" name="email" placeholder="Tu Email" value="ejemplo1@martinbrisset.com")
                 .campo
                     label(for="password") Password:
                     input(type="password" name="password" placeholder="Tu Password" value="1234")
@@ -25,3 +27,6 @@ html(lang="en")
                 .campo.acciones
                     a(href="/crear-cuenta") ¿Aún no tienes cuenta? Crea una gratis
                     a(href="/reestablecer") ¿Olvidaste tu Contraseña?
+            p Puedes ver el sistema en funcionamiento con las credenciales
+            p Usuario: ejemplo1@martinbrisset.com o ejemplo2@martinbrisset.com
+            p Password: 1234

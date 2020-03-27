@@ -23,15 +23,15 @@ exports.enviar = async (opciones) => {
     const html = generarHTML(opciones.archivo, opciones );
     const text = htmlToText.fromString(html);
     let opcionesEmail = {
-        from: 'UpTask <no-reply@uptask.com>',
+        from: 'UpTask <no-reply@martinbrisset.com>',
         to: opciones.usuario.email, 
         subject: opciones.subject,
         text, 
         html
     };
 
-    const enviarEmail = util.promisify(transport.sendMail, transport);
-    return enviarEmail.call(transport, opcionesEmail)
+    const enviarEmail = util.promisify(transport.sendMail, transport); //lo pasa por util para que acepte asyn await (promisify)
+    return enviarEmail.call(transport, opcionesEmail) //aca ejecuta la funcion de arriba con util
 }
 
 

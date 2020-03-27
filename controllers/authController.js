@@ -37,7 +37,7 @@ exports.cerrarSesion = (req, res) => {
 exports.enviarToken = async (req, res) => {
     // verificar que el usuario existe
     const {email} = req.body
-    const usuario = await Usuarios.findOne({where: { email }});
+    const usuario = await Usuarios.findOne({where: { email }}); //busca en bd si el correo existe
 
     // Si no existe el usuario
     if(!usuario) {
@@ -46,8 +46,8 @@ exports.enviarToken = async (req, res) => {
     }
 
     // usuario existe
-    usuario.token = crypto.randomBytes(20).toString('hex');
-    usuario.expiracion = Date.now() + 3600000;
+    usuario.token = crypto.randomBytes(20).toString('hex'); //genera un token
+    usuario.expiracion = Date.now() + 3600000; //a la fecha actual le suma 1 hora
 
     // guardarlos en la base de datos
     await usuario.save();
@@ -57,7 +57,7 @@ exports.enviarToken = async (req, res) => {
 
     // Enviar el Correo con el Token
 
-    await enviarEmail.enviar({
+    await enviarEmail.enviar({ //acepta async await por util
         usuario,
         subject: 'Password Reset', 
         resetUrl, 
@@ -70,7 +70,7 @@ exports.enviarToken = async (req, res) => {
 }
 
 exports.validarToken = async (req, res) => {
-    const usuario = await Usuarios.findOne({
+    const usuario = await Usuarios.findOne({ //busca en bd si el token coincide con algun usuario
         where: {
             token: req.params.token
         }
@@ -96,18 +96,18 @@ exports.actualizarPassword = async (req, res) => {
         where: {
             token: req.params.token,
             expiracion: {
-                [Op.gte] : Date.now()
+                [Op.gte] : Date.now() //operador para ver si la expiracion sea mayor o igual a la hora actual
             }
         }
     });
 
-    // verificamos si el usuario existe
+    // verificamos si el usuario existe y si el token es valido
     if(!usuario) {
         req.flash('error', 'No Válido');
         res.redirect('/reestablecer');
     }
 
-    // hashear el nuevo password
+    // hashear el nuevo password y elimina el token y la expiracion en la bd
 
     usuario.password = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10) );
     usuario.token = null;
