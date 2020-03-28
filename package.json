@@ -4,8 +4,9 @@
   "description": "Proyecto UpTask con Node y MVC",
   "main": "index.js",
   "scripts": {
+    "desarrollo": "concurrently \"npm run dev \" \"npm run watch \" ",
     "dev": "nodemon ./index.js",
-    "start": "concurrently \"npm run dev \" \"npm run watch \" ",
+    "start": "node ./index.js",
     "watch": "webpack --w --mode development"
   },
   "author": "Martin Brisset",

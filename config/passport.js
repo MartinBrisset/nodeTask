@@ -14,7 +14,7 @@ passport.use(
         },
         async (email, password, done) => {
             try {
-                const usuario = await Usuarios.findOne({
+                const usuario = await Usuarios.findOne({ //busca el usuario por el correo y que ademas la cuenta este confirmada
                     where: { 
                         email, 
                         activo: 1
